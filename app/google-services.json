@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "153181430180",
+    "firebase_url": "https://constelacaoapp1-default-rtdb.firebaseio.com",
+    "project_id": "constelacaoapp1",
+    "storage_bucket": "constelacaoapp1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153181430180:android:45f988eff910980549e131",
+        "android_client_info": {
+          "package_name": "com.brasil.benicio.constelacao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153181430180-98rf4irt6kvjji2lc4g2lcamihd7oc77.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brasil.benicio.constelacao",
+            "certificate_hash": "acbb715bf1dd6b52adac3b28d9532558a1a0abdf"
+          }
+        },
+        {
+          "client_id": "153181430180-c83ugtra5dh490ca1d6c2bhon8t5eok5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brasil.benicio.constelacao",
+            "certificate_hash": "62e0cbf84c429431c8aa56caf1edcece35eb1357"
+          }
+        },
+        {
+          "client_id": "153181430180-l820473pejgk1rc11gfngh4nmp8bs94i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFb7o3Y1n6wEsBm2ExP3bxcuz4APpGB8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153181430180-l820473pejgk1rc11gfngh4nmp8bs94i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153181430180:android:7985a089e968454549e131",
+        "android_client_info": {
+          "package_name": "com.brasil.benicio.constelacao2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153181430180-jrur9nongjigprto0tvuia536occ6l33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brasil.benicio.constelacao2",
+            "certificate_hash": "62e0cbf84c429431c8aa56caf1edcece35eb1357"
+          }
+        },
+        {
+          "client_id": "153181430180-l820473pejgk1rc11gfngh4nmp8bs94i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFb7o3Y1n6wEsBm2ExP3bxcuz4APpGB8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153181430180-l820473pejgk1rc11gfngh4nmp8bs94i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
