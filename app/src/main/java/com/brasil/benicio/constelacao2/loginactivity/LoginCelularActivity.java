@@ -92,8 +92,8 @@ public class LoginCelularActivity extends AppCompatActivity {
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 progress.setVisibility(View.GONE);
-                Toast.makeText(LoginCelularActivity.this, "Ocorreu alguma erro na verificação: "+ e.getMessage(), Toast.LENGTH_LONG).show();
-                Log.d("erroCell", e.getMessage());
+                viewBinding.debugError.setVisibility(View.VISIBLE);
+                viewBinding.debugError.setText("Ocorreu alguma erro na verificação: "+ e.getMessage());
             }
 
             @Override
