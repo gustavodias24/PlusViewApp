@@ -61,15 +61,21 @@ public class LoginCelularActivity extends AppCompatActivity {
         viewBinding.send.setOnClickListener(view -> {
             if (progress.getVisibility() == View.GONE){
                 if (veryNu){
-                    String numeroVerificacao = edtPhone.getText().toString();
+                    String numeroVerificacao = edtPhone.getText().toString().replace("-", "");
                     if (!numeroVerificacao.isEmpty() && numeroVerificacao != null){
                         progress.setVisibility(View.VISIBLE);
+
+                        String numeroFormatado = "+55"+ numeroVerificacao.split(" ")[1];
+
+                        Log.d("NUMERO VERI", numeroVerificacao);
+                        Log.d("NUMERO VERI", numeroFormatado);
+
                         startPhoneNumberVerification(numeroVerificacao);
                     }else{
                         Snackbar.make(view, "Insira o seu número", Snackbar.LENGTH_LONG).show();
                     }
                 }else{
-                    String codVerificacao = edtPhone.getText().toString();
+                    String codVerificacao = viewBinding.edtCodeVerification.getText().toString();
                     if (!codVerificacao.isEmpty() && codVerificacao != null){
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, codVerificacao);
                         signInWithPhoneAuthCredential(credential);
@@ -102,8 +108,10 @@ public class LoginCelularActivity extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
                 veryNu = false;
                 msg.setText("Insira o código de verificação agora!");
-                edtPhone.setHint("Insira o código aqui!");
-                edtPhone.setText("");
+
+                edtPhone.setVisibility(View.GONE);
+                viewBinding.edtCodeVerification.setVisibility(View.VISIBLE);
+
                 //precisa fazer a validação
                 mVerificationId = verificationId;
                 mResendToken = token;
@@ -152,7 +160,8 @@ public class LoginCelularActivity extends AppCompatActivity {
                                             progress.setVisibility(View.GONE);
                                             finish();
                                         }else{
-                                            Toast.makeText(LoginCelularActivity.this, "Erro banco "+ task1.getException().toString(), Toast.LENGTH_SHORT).show();
+                                            viewBinding.debugError.setVisibility(View.VISIBLE);
+                                            viewBinding.debugError.setText("Erro no banco: "+ task1.getException().toString());
                                         }
                                     });
                                 }

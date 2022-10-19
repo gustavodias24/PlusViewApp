@@ -61,7 +61,8 @@
             android:hint="Código de verificação"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/progressBar"
