@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".loginactivity.MainActivity"
-    >
+    android:baselineAligned="false">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,7 +25,17 @@
             android:textSize="16sp"
             android:textStyle="bold|italic" />
 
-        <EditText
+       <!-- <br.com.sapereaude.maskedEditText.MaskedEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/phone"
+        android:hint="9876543210"
+        android:inputType="phone"
+        app:keep_hint="true"
+        app:mask="+91 ### ### ####"/> -->
+
+        <com.vicmikhailau.maskededittext.MaskedEditText
             android:id="@+id/editPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,8 +43,22 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/fundo_arredondado"
+            android:hint="Exemplo DDD + NÚMERO"
+            android:inputType="phone"
+            android:padding="12dp"
+
+            app:mask="(+55) ######-#####" />
+
+        <EditText
+            android:id="@+id/edtCodeVerification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/fundo_arredondado"
             android:ems="10"
-            android:hint="Exemplo.: +559188888888 "
+            android:hint="Código de verificação"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:padding="8dp" />
@@ -64,13 +89,14 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/debugError"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="TextView"
+            android:textColor="#FF0000"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
