@@ -1,30 +1,33 @@
 package com.brasil.benicio.constelacao2.fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
+import android.annotation.SuppressLint;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.util.Base64;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
+
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.brasil.benicio.constelacao2.R;
+
+import com.brasil.benicio.constelacao2.adapters.AdapterVideoAssistir;
 import com.brasil.benicio.constelacao2.databinding.FragmentAssistirBinding;
 import com.brasil.benicio.constelacao2.models.UserModel;
 import com.brasil.benicio.constelacao2.models.VideoModel;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,13 +69,66 @@ public class Assistir extends Fragment {
     private boolean assistido = false;
     private boolean masPulou = false;
     private boolean pri = true;
+
+    private RecyclerView recyclerVideos;
+    private AdapterVideoAssistir adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewBinding = FragmentAssistirBinding.inflate(getLayoutInflater());
 
-        progress = viewBinding.progressAssistir;
+        recyclerVideos = viewBinding.recyclerVideos;
+        recyclerVideos.setHasFixedSize(true);
+        recyclerVideos.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        recyclerVideos.addItemDecoration(new DividerItemDecoration(inflater.getContext(), DividerItemDecoration.VERTICAL));
+        adapter = new AdapterVideoAssistir(listaVideo, inflater.getContext());
+        recyclerVideos.setAdapter(adapter);
+
+
+        FirebaseUser userLogadoAtual = user.getCurrentUser();
+
+        if(userLogadoAtual.getPhoneNumber() == null){
+            id = Base64.encodeToString(userLogadoAtual.getEmail().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "").trim();
+        }else{
+            id = Base64.encodeToString(userLogadoAtual.getPhoneNumber().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "").trim();
+        }
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dado : snapshot.getChildren()){
+                    if( dado.getKey().equals(id.trim()) ){
+                        userRefLogado = dado.getValue(UserModel.class);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        videosRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dado : snapshot.getChildren()){
+                    VideoModel videoAdd = dado.getValue(VideoModel.class);
+                    listaVideo.add(videoAdd);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        /*progress = viewBinding.progressAssistir;
 
         moedasGanhar = viewBinding.contMoedas;
         tempoAssistir = viewBinding.contTempo;
@@ -272,12 +328,12 @@ public class Assistir extends Fragment {
             }
         });
 
-        t = new Thread(){};
+        t = new Thread(){};*/
 
         return viewBinding.getRoot();
     }
 
-    @Override
+    /*@Override
     public void onStop() {
         Toast.makeText(getContext(), "Sistema detectou que você deixou de assitir o vídeo! Você não receberá a recompensa!", Toast.LENGTH_LONG).show();
         ganharRecomp = false;
@@ -319,5 +375,5 @@ public class Assistir extends Fragment {
         }
 
         return false;
-    }
+    }*/
 }

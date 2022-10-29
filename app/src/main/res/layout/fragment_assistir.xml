@@ -9,168 +9,192 @@
     android:layout_height="wrap_content"
     android:fillViewport="true">
 
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    tools:context=".fragments.Assistir">
-
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:visibility="visible"
+        tools:context=".fragments.Assistir">
 
         <LinearLayout
-            android:id="@+id/layoutYoutube"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:orientation="vertical"
-            android:visibility="visible">
-
-            <ProgressBar
-                android:id="@+id/progressAssistir"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/purple_500"
-                android:indeterminateTint="@color/purple_500"
-                android:progressTint="@color/purple_500" />
-
-            <WebView
-                android:id="@+id/webVideos"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_margin="8dp"
-                android:clickable="false"
-                android:padding="8dp"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:visibility="gone">
 
             <LinearLayout
+                android:id="@+id/layoutYoutube"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                <ProgressBar
+                    android:id="@+id/progressAssistir"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    android:backgroundTint="@color/purple_500"
+                    android:indeterminateTint="@color/purple_500"
+                    android:progressTint="@color/purple_500" />
 
-                    <TextView
-                        android:id="@+id/contTempo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="32"
-                        android:textColor="@color/black"
-                        android:textSize="48sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textViewt10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="Segundos para \nobter moedas"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <WebView
+                    android:id="@+id/webVideos"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
                     android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/contMoedas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="90"
-                        android:textColor="@color/black"
-                        android:textSize="48sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="Moedas serão \nadicionadas"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:clickable="false"
+                    android:padding="8dp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
-
-                <Button
-
-                    android:id="@+id/assistirAgora"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:backgroundTint="@color/purple_500"
-                    android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
-                    android:text="Contar segundos"
-                    android:textColor="@color/white"
-                    app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/white"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <Button
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="8dp">
 
-                    android:id="@+id/pular"
-                    android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/contTempo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="32"
+                            android:textColor="@color/black"
+                            android:textSize="48sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textViewt10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Segundos para \nobter moedas"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/contMoedas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="90"
+                            android:textColor="@color/black"
+                            android:textSize="48sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Moedas serão \nadicionadas"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="0"
-                    android:backgroundTint="@color/purple_500"
-                    android:drawableRight="@drawable/ic_baseline_skip_next_24"
-                    android:text="Pular"
-                    android:textColor="@color/white"
-                    app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/white"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
 
+                    <Button
+
+                        android:id="@+id/assistirAgora"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:backgroundTint="@color/purple_500"
+                        android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
+                        android:text="Contar segundos"
+                        android:textColor="@color/white"
+                        app:iconGravity="top"
+                        app:iconSize="30dp"
+                        app:iconTint="@color/white"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <Button
+
+                        android:id="@+id/pular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="0"
+                        android:backgroundTint="@color/purple_500"
+                        android:drawableRight="@drawable/ic_baseline_skip_next_24"
+                        android:text="Pular"
+                        android:textColor="@color/white"
+                        app:iconGravity="top"
+                        app:iconSize="30dp"
+                        app:iconTint="@color/white"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Vídeos para assistir e ganhar moedas"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerVideos"
+                android:layout_width="match_parent"
+                android:layout_height="852dp"
+                android:padding="8dp" />
+        </LinearLayout>
+
+
     </LinearLayout>
-
-
-</LinearLayout>
 </ScrollView>
