@@ -34,6 +34,18 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </WebView>
+
+        <ProgressBar
+            android:id="@+id/progressRecomp"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnassistir"
+            app:layout_constraintStart_toStartOf="@+id/wvAssitir"
+            app:layout_constraintTop_toTopOf="@+id/wvAssitir" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
