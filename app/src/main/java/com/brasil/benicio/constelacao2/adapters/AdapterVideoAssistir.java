@@ -6,7 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.MediaStore;
+
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ImageButton;
+
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.brasil.benicio.constelacao2.R;
 import com.brasil.benicio.constelacao2.models.UserModel;
 import com.brasil.benicio.constelacao2.models.VideoModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,19 +59,37 @@ public class AdapterVideoAssistir extends RecyclerView.Adapter<AdapterVideoAssis
         c.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(video)));
     }
 
-    public void darRecompensa(VideoModel videoModel){
+    public void darRecompensa(VideoModel videoModel, ProgressBar progress){
+
         FirebaseUser userLogadoAtual = user.getCurrentUser();
+
         if(userLogadoAtual.getPhoneNumber() == null){
             id = Base64.encodeToString(userLogadoAtual.getEmail().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "").trim();
         }else{
             id = Base64.encodeToString(userLogadoAtual.getPhoneNumber().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "").trim();
         }
-        userRef.addValueEventListener(new ValueEventListener() {
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dado : snapshot.getChildren()){
+
                     if( dado.getKey().equals(id.trim()) ){
+
                         userRefLogado = dado.getValue(UserModel.class);
+
+                        UserModel userModel = userRefLogado;
+                        userModel.setQtMoedas(
+                                userModel.getQtMoedas() + videoModel.getQtdMoedas()
+                        );
+
+                        userRef.child(id.trim()).setValue(userModel).addOnCompleteListener(task -> {
+                            if (task.isSuccessful()){
+                                progress.setVisibility(View.GONE);
+                                assistir(videoModel.getUrl());
+                            }else{
+                                Toast.makeText(c, "Erro de conexão!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }
             }
@@ -82,20 +99,6 @@ public class AdapterVideoAssistir extends RecyclerView.Adapter<AdapterVideoAssis
 
             }
         });
-
-        UserModel userModel = userRefLogado;
-        userModel.setQtMoedas(
-                userModel.getQtMoedas() + videoModel.getQtdMoedas()
-        );
-
-        userRef.child(id.trim()).setValue(userModel).addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                assistir(videoModel.getUrl());
-            }else{
-                Toast.makeText(c, "Erro de conexão!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     public void removerDoBanco(){
@@ -132,7 +135,10 @@ public class AdapterVideoAssistir extends RecyclerView.Adapter<AdapterVideoAssis
         wb.loadUrl(video.getUrl());
 
         holder.assitir.setOnClickListener(view2 ->{
-            darRecompensa(video);
+            if (holder.progress.getVisibility() == View.GONE){
+                holder.progress.setVisibility(View.VISIBLE);
+                darRecompensa(video, holder.progress);
+            }
         });
 
     }
@@ -147,6 +153,7 @@ public class AdapterVideoAssistir extends RecyclerView.Adapter<AdapterVideoAssis
         private Button like,view,assitir;
         private TextView moedasOferecer;
         private WebView viewAssistir;
+        private ProgressBar progress;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -155,6 +162,7 @@ public class AdapterVideoAssistir extends RecyclerView.Adapter<AdapterVideoAssis
             view = itemView.findViewById(R.id.btnView);
             viewAssistir = itemView.findViewById(R.id.wvAssitir);
             moedasOferecer = itemView.findViewById(R.id.textOferece);
+            progress = itemView.findViewById(R.id.progressRecomp);
         }
     }
 }
