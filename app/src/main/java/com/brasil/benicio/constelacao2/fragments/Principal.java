@@ -24,6 +24,7 @@ import com.brasil.benicio.constelacao2.TutorialActivity;
 import com.brasil.benicio.constelacao2.databinding.ActivityPrincipalBinding;
 import com.brasil.benicio.constelacao2.loginactivity.MainActivity;
 import com.brasil.benicio.constelacao2.models.UserModel;
+import com.brasil.benicio.constelacao2.util.RetornarDadosUsuarios;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -60,13 +61,7 @@ public class Principal extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.laranja_escuro));
         }
 
-        FirebaseUser userLogadoAtual = user.getCurrentUser();
-
-        if(userLogadoAtual.getEmail() != null){
-            id = Base64.encodeToString(userLogadoAtual.getEmail().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "");
-        }else{
-            id = Base64.encodeToString(userLogadoAtual.getPhoneNumber().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "");
-        }
+        id = RetornarDadosUsuarios.getId();
 
         Log.d("id atual", id+" id email ne");
         userRef.addValueEventListener(new ValueEventListener() {

@@ -27,6 +27,7 @@ import com.brasil.benicio.constelacao2.databinding.FragmentPromoverBinding;
 import com.brasil.benicio.constelacao2.models.MeusVideosModel;
 import com.brasil.benicio.constelacao2.models.UserModel;
 import com.brasil.benicio.constelacao2.models.VideoModel;
+import com.brasil.benicio.constelacao2.util.RetornarDadosUsuarios;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -68,13 +69,7 @@ public class Promover extends Fragment {
 
         progress = binding.progressPromover;
 
-        FirebaseUser userLogadoAtual = user.getCurrentUser();
-
-        if(userLogadoAtual.getPhoneNumber() == null){
-            id = Base64.encodeToString(userLogadoAtual.getEmail().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "").trim();
-        }else{
-            id = Base64.encodeToString(userLogadoAtual.getPhoneNumber().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "").trim();
-        }
+        id = RetornarDadosUsuarios.getId();
 
         binding.apagarTodosRegistros.setOnClickListener(vi234 ->{
             AlertDialog.Builder b = new AlertDialog.Builder(container.getContext());
