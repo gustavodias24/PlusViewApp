@@ -67,6 +67,7 @@ public class Promover extends Fragment {
         binding = FragmentPromoverBinding.inflate(getLayoutInflater());
 
         progress = binding.progressPromover;
+
         FirebaseUser userLogadoAtual = user.getCurrentUser();
 
         if(userLogadoAtual.getPhoneNumber() == null){
@@ -154,7 +155,7 @@ public class Promover extends Fragment {
                     AlertDialog.Builder b = new AlertDialog.Builder(container.getContext());
                     DialogPromoverVideoBinding b_promover = DialogPromoverVideoBinding.inflate(LayoutInflater.from(container.getContext()));
                     b.setTitle("Painel promover vídeo");
-                    b.setMessage("Escolha um vídeo e coloque a quantiade de moedas que deseja investir.");
+                    b.setMessage("Escolha um vídeo e coloque a quantidade de moedas que deseja investir.");
 
                     b_promover.msgMoeda.setText("Você tem "+ userRefLogado.getQtMoedas() +" moedas para gastar!");
                     b_promover.prontoVideo.setOnClickListener(v ->{
@@ -166,7 +167,7 @@ public class Promover extends Fragment {
                             permitir = true;
                         }catch (Exception e){
                             progress.setVisibility(View.GONE);
-                            Snackbar.make(v, "Erro ao selecionar variaveis inteiras!", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(v, "Erro ao selecionar variáveis inteiras!", Snackbar.LENGTH_LONG).show();
                         }
                         if (permitir){
 

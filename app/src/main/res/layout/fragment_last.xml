@@ -14,12 +14,11 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="394dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/assistir"
+            android:src="@drawable/ganharecomp"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Para ganhar recompensas você precisa clicar no botão 'contar tempo' como indica na imagem para poder começar o relógio, quando o tempo assistido finalizar você receberar a sua recompensa, caso não saia do app e nem altere de página, você pode pular o vídeo caso queira assistir outro!"
+                android:text="Para ganhar recompensas você precisa clicar no vídeo que deseja e assistir ele."
                 android:textColor="#FFF"
                 android:textSize="16sp" />
 

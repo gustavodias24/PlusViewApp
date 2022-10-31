@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -60,21 +61,14 @@ public class Principal extends AppCompatActivity {
         }
 
         FirebaseUser userLogadoAtual = user.getCurrentUser();
+
         if(userLogadoAtual.getEmail() != null){
-            try {
-                id = Base64.encodeToString(userLogadoAtual.getEmail().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "");
-            }catch(Exception e){
-                Toast.makeText(this, "Entre no app novamente!", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        }
-
-
-        // se tiver phone loga pelo telefone
-        if (userLogadoAtual.getPhoneNumber() != null){
+            id = Base64.encodeToString(userLogadoAtual.getEmail().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "");
+        }else{
             id = Base64.encodeToString(userLogadoAtual.getPhoneNumber().getBytes(), Base64.DEFAULT).replaceAll("(\\n | \\r)", "");
         }
 
+        Log.d("id atual", id+" id email ne");
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
