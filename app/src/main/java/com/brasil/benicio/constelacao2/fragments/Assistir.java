@@ -69,11 +69,17 @@ public class Assistir extends Fragment {
 
     private RecyclerView recyclerVideos;
     private AdapterVideoAssistir adapter;
+    private TextView textSemVioeo;
+    private ProgressBar progressSemVideo;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewBinding = FragmentAssistirBinding.inflate(getLayoutInflater());
+
+        // setando var para nõa video
+        textSemVioeo = viewBinding.textSemVideo2;
+        progressSemVideo = viewBinding.progressSemVideo2;
 
         recyclerVideos = viewBinding.recyclerVideos;
         recyclerVideos.setHasFixedSize(true);
@@ -319,6 +325,17 @@ public class Assistir extends Fragment {
                     listaVideo.add(videoAdd);
                 }
                 adapter.notifyDataSetChanged();
+                progressSemVideo.setVisibility(View.GONE);
+
+                if ( listaVideo.isEmpty() )
+                {
+                    textSemVioeo.setVisibility(View.VISIBLE);
+                    recyclerVideos.setVisibility(View.GONE);
+                }else{
+                    textSemVioeo.setVisibility(View.GONE);
+                    recyclerVideos.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override

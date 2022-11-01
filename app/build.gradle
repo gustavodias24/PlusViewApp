@@ -10,8 +10,8 @@ android {
         applicationId "com.brasil.benicio.constelacao2"
         minSdk 21
         targetSdk 32
-        versionCode 6
-        versionName "6.777"
+        versionCode 8
+        versionName "8.777"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
